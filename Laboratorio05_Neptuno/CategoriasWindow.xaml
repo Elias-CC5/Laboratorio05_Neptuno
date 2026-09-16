@@ -1,0 +1,35 @@
+<Window x:Class="Laboratorio05_Neptuno.CategoriasWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mantenimiento de Categorías" Height="400" Width="600">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal" Margin="0,2">
+                <Label Content="ID:" Width="80"/>
+                <TextBox x:Name="txtCategoriaID" Width="60" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,2">
+                <Label Content="Nombre:" Width="80"/>
+                <TextBox x:Name="txtNombre" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,2">
+                <Label Content="Descripción:" Width="80"/>
+                <TextBox x:Name="txtDescripcion" Width="300"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="btnAgregar" Content="Agregar" Width="80" Margin="5" Click="btnAgregar_Click"/>
+            <Button x:Name="btnActualizar" Content="Actualizar" Width="80" Margin="5" Click="btnActualizar_Click"/>
+            <Button x:Name="btnEliminar" Content="Eliminar (Baja Lógica)" Width="130" Margin="5" Click="btnEliminar_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgCategorias" Grid.Row="2" AutoGenerateColumns="True" SelectionChanged="dgCategorias_SelectionChanged"/>
+    </Grid>
+</Window>

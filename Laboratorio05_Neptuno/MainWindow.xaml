@@ -1,0 +1,15 @@
+﻿<Window x:Class="Laboratorio05_Neptuno.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Menú Principal - Laboratorio 05" Height="350" Width="400">
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Center">
+            <Label Content="SISTEMA DE GESTIÓN NEPTUNO" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <Button x:Name="btnProductos" Content="Mantenimiento de Productos" Height="35" Margin="5" Click="btnProductos_Click"/>
+            <Button x:Name="btnCategorias" Content="Mantenimiento de Categorías" Height="35" Margin="5" Click="btnCategorias_Click"/>
+            <Button x:Name="btnProveedores" Content="Búsqueda de Proveedores" Height="35" Margin="5" Click="btnProveedores_Click"/>
+            <Button x:Name="btnPedidos" Content="Reporte de Pedidos" Height="35" Margin="5" Click="btnPedidos_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
