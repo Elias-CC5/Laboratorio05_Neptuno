@@ -17,25 +17,47 @@ namespace Laboratorio05_Neptuno
         {
             if (dpInicio.SelectedDate == null || dpFin.SelectedDate == null)
             {
-                MessageBox.Show("Por favor, seleccione la fecha de inicio y la fecha de fin.");
+                MessageBox.Show("Por favor, seleccione ambas fechas.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            using (SqlConnection con = Conexion.ObtenerConexion())
+            DateTime fechaInicio = dpInicio.SelectedDate.Value.Date;
+            DateTime fechaFin = dpFin.SelectedDate.Value.Date.AddDays(1).AddSeconds(-1);
+
+            if (fechaInicio > fechaFin)
             {
-                SqlCommand cmd = new SqlCommand("sp_ReporteDetallePedidosPorFechas", con)
+                MessageBox.Show("La fecha de inicio debe ser menor o igual a la fecha de fin.", "Rango Inválido", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection con = Conexion.ObtenerConexion())
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
+                    SqlCommand cmd = new SqlCommand("sp_ReporteDetallePedidosPorFechas", con)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
 
-                cmd.Parameters.AddWithValue("@FechaInicio", dpInicio.SelectedDate.Value);
-                cmd.Parameters.AddWithValue("@FechaFin", dpFin.SelectedDate.Value);
+                    cmd.Parameters.AddWithValue("@FechaInicio", fechaInicio);
+                    cmd.Parameters.AddWithValue("@FechaFin", fechaFin);
 
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgReporte.ItemsSource = dt.DefaultView;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgReporte.ItemsSource = dt.DefaultView;
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron pedidos registrados en ese rango de fechas.", "Sin resultados", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al consultar el reporte: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
-}
+    }

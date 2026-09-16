@@ -1,39 +1,62 @@
-<Window x:Class="Laboratorio05.ProductosWindow"
+<Window x:Class="Laboratorio05_Neptuno.ProductosWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Mantenimiento de Productos" Height="450" Width="700">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        Title="Mantenimiento de Productos" Height="500" Width="850">
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
 
-        <!-- Formulario -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <Label Content="ID:"/>
-            <TextBox x:Name="txtProductoID" Width="50" IsReadOnly="True" Margin="5"/>
+		<!-- Formulario completo -->
+		<WrapPanel Grid.Row="0" Margin="0,0,0,10">
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<Label Content="ID:"/>
+				<TextBox x:Name="txtProductoID" Width="40" IsReadOnly="True"/>
+			</StackPanel>
 
-            <Label Content="Nombre:"/>
-            <TextBox x:Name="txtNombre" Width="120" Margin="5"/>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<Label Content="Nombre:"/>
+				<TextBox x:Name="txtNombre" Width="120"/>
+			</StackPanel>
 
-            <Label Content="Precio:"/>
-            <TextBox x:Name="txtPrecio" Width="80" Margin="5"/>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<Label Content="Proveedor ID:"/>
+				<TextBox x:Name="txtProveedorID" Width="50"/>
+			</StackPanel>
 
-            <Label Content="Stock:"/>
-            <TextBox x:Name="txtStock" Width="60" Margin="5"/>
-        </StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<Label Content="Categoría ID:"/>
+				<TextBox x:Name="txtCategoriaID" Width="50"/>
+			</StackPanel>
 
-        <!-- Botones -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <Button x:Name="btnAgregar" Content="Agregar" Width="80" Margin="5" Click="btnAgregar_Click"/>
-            <Button x:Name="btnActualizar" Content="Actualizar" Width="80" Margin="5" Click="btnActualizar_Click"/>
-            <Button x:Name="btnEliminar" Content="Eliminar (Baja Lógica)" Width="140" Margin="5" Click="btnEliminar_Click"/>
-            <Button x:Name="btnLimpiar" Content="Limpiar" Width="80" Margin="5" Click="btnLimpiar_Click"/>
-        </StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<Label Content="Cant. x Unidad:"/>
+				<TextBox x:Name="txtCantidadPorUnidad" Width="90"/>
+			</StackPanel>
 
-        <!-- Grilla de datos -->
-        <DataGrid x:Name="dgProductos" Grid.Row="2" AutoGenerateColumns="True" 
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<Label Content="Precio:"/>
+				<TextBox x:Name="txtPrecio" Width="60"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="5">
+				<Label Content="Stock:"/>
+				<TextBox x:Name="txtStock" Width="50"/>
+			</StackPanel>
+		</WrapPanel>
+
+		<!-- Botones de Acción -->
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+			<Button x:Name="btnAgregar" Content="Agregar" Width="80" Margin="5" Click="btnAgregar_Click"/>
+			<Button x:Name="btnActualizar" Content="Actualizar" Width="80" Margin="5" Click="btnActualizar_Click"/>
+			<Button x:Name="btnEliminar" Content="Eliminar (Baja Lógica)" Width="140" Margin="5" Click="btnEliminar_Click"/>
+			<Button x:Name="btnLimpiar" Content="Limpiar" Width="80" Margin="5" Click="btnLimpiar_Click"/>
+		</StackPanel>
+
+		<!-- Grilla de datos -->
+		<DataGrid x:Name="dgProductos" Grid.Row="2" AutoGenerateColumns="True"
                   SelectionChanged="dgProductos_SelectionChanged"/>
-    </Grid>
+	</Grid>
 </Window>
